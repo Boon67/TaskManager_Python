@@ -5,6 +5,7 @@ from app.infrastructure.repositories.task_repository_impl import TaskRepositoryI
 from app.application.dtos.task_dto import CreateTaskDTO, UpdateTaskDTO
 
 
+# Test for Creating a Task
 def test_create_task():
     task_repository = TaskRepositoryImpl()
     task_use_cases = TaskUseCases(task_repository)
@@ -22,6 +23,7 @@ def test_create_task():
     assert created_task.status == "pending"
 
 
+# Test for Updating a Task
 def test_update_task():
     task_repository = TaskRepositoryImpl()
     task_use_cases = TaskUseCases(task_repository)
@@ -45,3 +47,35 @@ def test_update_task():
     assert updated_task.title == "Updated Test Task"
     assert updated_task.description == "This is an updated test task"
     assert updated_task.due_date == created_task.due_date + timedelta(days=3)
+
+
+# Test for Deleting a Task
+def test_delete_task():
+    task_repository = TaskRepositoryImpl()
+    task_use_cases = TaskUseCases(task_repository)
+
+    task_dto = CreateTaskDTO(
+        title="Test Task",
+        description="This is a test task",
+        due_date=datetime.now() + timedelta(days=7),
+    )
+
+    created_task = task_use_cases.create_task(task_dto)
+    delete_task = task_use_cases.delete_task(created_task.id)
+    assert delete_task == True
+
+
+# Test for Retrieving a Task
+def test_get_task():
+    task_repository = TaskRepositoryImpl()
+    task_use_cases = TaskUseCases(task_repository)
+
+    task_dto = CreateTaskDTO(
+        title="Test Task",
+        description="This is a test task",
+        due_date=datetime.now() + timedelta(days=7),
+    )
+
+    created_task = task_use_cases.create_task(task_dto)
+    get_task = task_use_cases.get_task(created_task.id)
+    assert get_task.id == created_task.id

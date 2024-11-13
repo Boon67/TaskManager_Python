@@ -4,7 +4,7 @@ from uuid import UUID
 from sqlalchemy.orm import Session
 from ...domain.interfaces.task_repository import TaskRepository
 from ...domain.entities.task import Task
-from ..database_sqlite import SessionLocal, Base, engine
+from ..database import SessionLocal, Base, engine
 from sqlalchemy import Column, String, DateTime, Table
 
 # SQLAlchemy model
