@@ -11,6 +11,14 @@ class TaskUseCases:
         self.task_repository = task_repository
 
     def create_task(self, task_dto: CreateTaskDTO) -> TaskResponseDTO:
+        """Creates a task  of type CreateTaskDTO
+
+        Args:
+            task_dto (CreateTaskDTO): CreateTaskDTO Object
+
+        Returns:
+            TaskResponseDTO: Returns the full task object response
+        """
         task = Task(
             title=task_dto.title,
             description=task_dto.description,

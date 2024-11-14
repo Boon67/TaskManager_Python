@@ -1,3 +1,4 @@
+# app/domain/interfaces/task_repository.py
 from abc import ABC, abstractmethod
 from typing import List, Optional
 from uuid import UUID
@@ -5,6 +6,13 @@ from ..entities.task import Task
 
 
 class TaskRepository(ABC):
+    """Defines the ABC for Interfaces
+    to be implemented on the repository
+
+    Args:
+        ABC (_type_): Abstract Base Class
+    """
+
     @abstractmethod
     def create(self, task: Task) -> Task:
         pass
