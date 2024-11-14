@@ -4,6 +4,9 @@ from datetime import datetime
 from typing import Optional
 from uuid import UUID, uuid4
 
+"""Domain model for the Task Object
+"""
+
 
 @dataclass
 class Task:

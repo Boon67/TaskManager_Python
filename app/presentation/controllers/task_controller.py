@@ -13,6 +13,17 @@ task_use_cases = TaskUseCases(task_repository)
 
 @router.post("/tasks", response_model=TaskResponseDTO)
 async def create_task(task_dto: CreateTaskDTO):
+    """Creates a task based upon the CreateTaskDTO
+
+    Args:
+        task_dto (CreateTaskDTO): DTO for the Create Tasks
+
+    Raises:
+        HTTPException: Throws HTTP execptions on error
+
+    Returns:
+        _type_: Returns the TaskResponseDTO based upon the operation results
+    """
     try:
         return task_use_cases.create_task(task_dto)
     except Exception as e:

@@ -33,6 +33,14 @@ class TaskRepositoryImpl(TaskRepository):
             db.close()
 
     def create(self, task: Task) -> Task:
+        """Creates a task based upon the task object
+
+        Args:
+            task (Task): Task Object
+
+        Returns:
+            Task: Task Object
+        """
         db = self._get_db()
         db_task = dict(
             id=str(task.id),
@@ -48,6 +56,14 @@ class TaskRepositoryImpl(TaskRepository):
         return task
 
     def get_by_id(self, task_id: UUID) -> Optional[Task]:
+        """Retrieves a task by the ID
+
+        Args:
+            task_id (UUID): UUID of the reference tasks
+
+        Returns:
+            Optional[Task]: Returns a task object if found
+        """
         db = self._get_db()
         result = db.execute(
             tasks_table.select().where(tasks_table.c.id == str(task_id))
@@ -65,6 +81,11 @@ class TaskRepositoryImpl(TaskRepository):
         return None
 
     def get_all(self) -> List[Task]:
+        """Retrieves all the tasks from the repository
+
+        Returns:
+            List[Task]: Dictionary of Task objects
+        """
         db = self._get_db()
         results = db.execute(tasks_table.select()).fetchall()
         return [
@@ -81,6 +102,14 @@ class TaskRepositoryImpl(TaskRepository):
         ]
 
     def update(self, task: Task) -> Task:
+        """Updates a task based upon the task object passed
+
+        Args:
+            task (Task): Task Object
+
+        Returns:
+            Task: Returns the updated task.
+        """
         db = self._get_db()
         db_task = dict(
             title=task.title,
@@ -98,6 +127,14 @@ class TaskRepositoryImpl(TaskRepository):
         return task
 
     def delete(self, task_id: UUID) -> bool:
+        """Deletes a given task based upon the UUID
+
+        Args:
+            task_id (UUID): UUID of the task to be deleted
+
+        Returns:
+            bool: Returns True if successful
+        """
         db = self._get_db()
         result = db.execute(
             tasks_table.delete().where(tasks_table.c.id == str(task_id))

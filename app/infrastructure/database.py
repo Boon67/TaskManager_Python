@@ -3,7 +3,6 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-
 from dotenv import load_dotenv
 import os
 
@@ -22,6 +21,7 @@ DB_PASS = os.getenv("DB_PASS", "mypassword")
 def get_db_engine():
     if DB_TYPE == "sqlite":
         return create_engine(f"sqlite:///{DB_NAME}.db")
+    ##Future Plans for additional DB formats
     elif DB_TYPE == "cockroachdb":
         return create_engine(
             f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode=verify-full"
