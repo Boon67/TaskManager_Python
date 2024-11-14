@@ -1,6 +1,6 @@
 # app/application/use_cases/task_use_cases.py
 from typing import List
-from uuid import UUID
+from uuid import UUID, uuid4
 from ...domain.interfaces.task_repository import TaskRepository
 from ...domain.entities.task import Task
 from ..dtos.task_dto import CreateTaskDTO, UpdateTaskDTO, TaskResponseDTO
@@ -20,6 +20,7 @@ class TaskUseCases:
             TaskResponseDTO: Returns the full task object response
         """
         task = Task(
+            id=uuid4(),
             title=task_dto.title,
             description=task_dto.description,
             due_date=task_dto.due_date,
