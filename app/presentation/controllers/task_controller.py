@@ -3,8 +3,14 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 from uuid import UUID
 from ...application.use_cases.task_use_cases import TaskUseCases
-from ...application.dtos.task_dto import CreateTaskDTO, UpdateTaskDTO, TaskResponseDTO
-from ...infrastructure.repositories.task_repository_impl import TaskRepositoryImpl
+from ...application.dtos.task_dto import (
+    CreateTaskDTO,
+    UpdateTaskDTO,
+    TaskResponseDTO,
+)
+from ...infrastructure.repositories.task_repository_impl import (
+    TaskRepositoryImpl,
+)
 
 router = APIRouter()
 task_repository = TaskRepositoryImpl()

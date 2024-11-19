@@ -23,7 +23,10 @@ class Task:
         self.updated_at = datetime.now()
 
     def update(
-        self, title: str = None, description: str = None, due_date: datetime = None
+        self,
+        title: str = None,
+        description: str = None,
+        due_date: datetime = None,
     ):
         if title:
             self.title = title

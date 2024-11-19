@@ -1,7 +1,8 @@
-from uuid import uuid4
 from datetime import datetime, timedelta
 from app.application.use_cases.task_use_cases import TaskUseCases
-from app.infrastructure.repositories.task_repository_impl import TaskRepositoryImpl
+from app.infrastructure.repositories.task_repository_impl import (
+    TaskRepositoryImpl,
+)
 from app.application.dtos.task_dto import CreateTaskDTO, UpdateTaskDTO
 
 
@@ -63,7 +64,7 @@ def test_delete_task():
     # Delete the Tasks
     delete_task = task_use_cases.delete_task(created_task.id)
     # Assertions
-    assert delete_task == True
+    assert delete_task
     tear_down(created_task.id)
 
 
@@ -89,7 +90,7 @@ def tear_down(taskid):
     task_repository = TaskRepositoryImpl()
     task_use_cases = TaskUseCases(task_repository)
     print("this is Teardown")
-    delete_task = task_use_cases.delete_task(taskid)
+    task_use_cases.delete_task(taskid)
 
 
 # Helper function setting up task environments

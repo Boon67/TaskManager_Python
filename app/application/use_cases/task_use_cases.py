@@ -37,9 +37,13 @@ class TaskUseCases:
 
     def get_all_tasks(self) -> List[TaskResponseDTO]:
         tasks = self.task_repository.get_all()
-        return [TaskResponseDTO.model_validate(task.__dict__) for task in tasks]
+        return [
+            TaskResponseDTO.model_validate(task.__dict__) for task in tasks
+        ]
 
-    def update_task(self, task_id: UUID, task_dto: UpdateTaskDTO) -> TaskResponseDTO:
+    def update_task(
+        self, task_id: UUID, task_dto: UpdateTaskDTO
+    ) -> TaskResponseDTO:
         task = self.task_repository.get_by_id(task_id)
         if not task:
             raise ValueError("Task not found")
